@@ -3,7 +3,7 @@ class MultiCourseSystem:
         self.students = {}
         
        
-        self.catalog = ["Python Data Science", "Robotics 101", "Web Development", "Cyber Security"]
+        self.catalog = ["Data Science", "Robotics ", "Web Development", "Cyber Security"]
 
    
     def view_courses(self):
