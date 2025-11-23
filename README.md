@@ -64,17 +64,17 @@ Each student is stored in a dictionary like:
 
 A fixed list of available university courses:
 
-["Python Data Science", "Robotics 101", "Web Development", "Cyber Security"]
+["Data Science", "Robotics", "Web Development", "Cyber Security"]
 
 🖥️ How It Works
 
 Once you run the program, you’ll see this main menu:
 
-=== UNIVERSITY MANAGER ===
-1. Register Student
-2. View Available Courses
-3. View All Students
-4. Add/Drop Courses
+=== COURSE MANAGER ===
+1. New Student
+2. View All Courses
+3. View Enrolled Students
+4. Edit Courses
 5. Remove Student
 6. Exit
 
