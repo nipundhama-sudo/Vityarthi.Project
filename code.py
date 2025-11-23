@@ -1,19 +1,18 @@
 class MultiCourseSystem:
     def __init__(self):
-        # Database: { ID: {'name': 'Aditya', 'courses': ['Python', 'Robotics']} }
         self.students = {}
         
-        # The University course list
+       
         self.catalog = ["Python Data Science", "Robotics 101", "Web Development", "Cyber Security"]
 
-    # Feature for viewing courses
+   
     def view_courses(self):
-        print("\n--- [R] COURSE CATALOG & STATISTICS ---")
+        print("\n--- [R] COURSE Management")
         print(f"{'Course Name':<25} {'Enrolled Students'}")
         print("-" * 45)
         
         for course in self.catalog:
-            # Calculate how many students have this course in their list
+           
             count = 0
             for student_data in self.students.values():
                 if course in student_data['courses']:
@@ -21,38 +20,35 @@ class MultiCourseSystem:
             
             print(f"{course:<25} {count}")
 
-    # Creating a new registration
+    
     def register_student(self):
-        print("\n--- [C] NEW REGISTRATION ---")
+        print("\n--- [C] New Student---")
         s_id = input("Enter Student ID: ")
         
-        if s_id in self.students:
-            print("Error: ID already exists.")
-            return
+        
 
         name = input("Enter Student Name: ")
         
-        # Show list for selection
-        print("\nAvailable Courses:")
+        
+        print("\nAll Courses:")
         for i, c in enumerate(self.catalog, 1):
             print(f"{i}. {c}")
         
-        print("Type the exact name of the course to enroll (or 'skip'):")
+        print("Type the exact name of the course to enroll :")
         selection = input("Course Name: ").strip()
 
         enrolled_courses = []
         if selection in self.catalog:
             enrolled_courses.append(selection)
             print(f"Added {selection}.")
-        elif selection.lower() != 'skip':
-            print("Invalid course. Registered with 0 courses.")
+        
 
         self.students[s_id] = {'name': name, 'courses': enrolled_courses}
         print(f"Success: Student {name} registered.")
 
-    # Checking for the students enrolled in the courses
+    
     def view_students(self):
-        print("\n--- [R] STUDENT ENROLLMENTS ---")
+        print("\n--- [R] List Of students ---")
         if not self.students:
             print("No students found.")
         else:
@@ -62,9 +58,9 @@ class MultiCourseSystem:
                 course_str = ", ".join(data['courses']) if data['courses'] else "None"
                 print(f"{s_id:<10} {data['name']:<15} {course_str}")
 
-    # Add/Drop
+   
     def update_enrollment(self):
-        print("\n--- [U] ADD/DROP COURSES ---")
+        print("\n--- [U] Edit COURSES ---")
         s_id = input("Enter Student ID: ")
         
         if s_id in self.students:
@@ -94,9 +90,9 @@ class MultiCourseSystem:
         else:
             print("Error: ID not found.")
 
-    # Deleting a profile
+    
     def delete_student(self):
-        print("\n--- [D] REMOVE STUDENT ---")
+        print("\n--- [D] Delete  STUDENT ---")
         s_id = input("Enter Student ID: ")
         if s_id in self.students:
             del self.students[s_id]
@@ -104,16 +100,16 @@ class MultiCourseSystem:
         else:
             print("Error: ID not found.")
 
-# Main menu 
+
 def main():
     system = MultiCourseSystem()
     
     while True:
-        print("\n=== UNIVERSITY MANAGER ===")
-        print("1. Register Student")
-        print("2. View Available Courses")  # <-- NEW OPTION
-        print("3. View All Students")
-        print("4. Add/Drop Courses")
+        print("\n=== Course Manager ===")
+        print("1. New Student")
+        print("2. View All Courses")
+        print("3. View Enrolled Students")
+        print("4. Edit Courses")
         print("5. Remove Student")
         print("6. Exit")
         
@@ -122,7 +118,7 @@ def main():
         if choice == '1':
             system.register_student()
         elif choice == '2':
-            system.view_courses()  # <-- CALLS NEW FUNCTION
+            system.view_courses() 
         elif choice == '3':
             system.view_students()
         elif choice == '4':
