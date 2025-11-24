@@ -1,12 +1,12 @@
 class MultiCourseSystem:
-    def init(self):
+    def __init__(self):
         self.students = {}
         
        
-        self.catalog = ["Data Science", "Electrical Engineering", "Health Informatics", "AI and ML"]
+        self.catalog = ["Python Data Science", "Robotics 101", "Web Development", "Cyber Security"]
 
    
-    def view__courses(self):
+    def view_courses(self):
         print("\n--- [R] COURSE Management")
         print(f"{'Course Name':<25} {'Enrolled Students'}")
         print("-" * 45)
@@ -14,14 +14,14 @@ class MultiCourseSystem:
         for course in self.catalog:
            
             count = 0
-            for student.data in self.students.values():
+            for student_data in self.students.values():
                 if course in student_data['courses']:
                     count += 1
             
             print(f"{course:<25} {count}")
 
     
-    def register__student(self):
+    def register_student(self):
         print("\n--- [C] New Student---")
         s_id = input("Enter Student ID: ")
         
@@ -39,7 +39,7 @@ class MultiCourseSystem:
 
         enrolled_courses = []
         if selection in self.catalog:
-            enrolled__courses.append(selection)
+            enrolled_courses.append(selection)
             print(f"Added {selection}.")
         
 
@@ -47,14 +47,60 @@ class MultiCourseSystem:
         print(f"Success: Student {name} registered.")
 
     
-    def view__students(self):
+    def view_students(self):
         print("\n--- [R] List Of students ---")
         if not self.students:
-            print("No student")
+            print("No students found.")
         else:
             print(f"{'ID':<10} {'Name':<15} {'Enrolled Courses'}")
             print("-" * 60)
+            for s_id, data in self.students.items():
+                course_str = ", ".join(data['courses']) if data['courses'] else "None"
+                print(f"{s_id:<10} {data['name']:<15} {course_str}")
+
+   
+    def update_enrollment(self):
+        print("\n--- [U] Edit COURSES ---")
+        s_id = input("Enter Student ID: ")
+        
+        if s_id in self.students:
+            student = self.students[s_id]
+            print(f"Student: {student['name']} | Courses: {student['courses']}")
             
+            action = input("Do you want to (1) Add Course or (2) Drop Course? ")
+            
+            if action == '1':
+                new_course = input("Enter exact course name to add: ")
+                if new_course in self.catalog:
+                    if new_course not in student['courses']:
+                        student['courses'].append(new_course)
+                        print("Success: Course added.")
+                    else:
+                        print("Error: Already enrolled.")
+                else:
+                    print("Error: Course not in catalog.")
+            
+            elif action == '2':
+                drop_course = input("Enter exact course name to drop: ")
+                if drop_course in student['courses']:
+                    student['courses'].remove(drop_course)
+                    print("Success: Course dropped.")
+                else:
+                    print("Error: Not enrolled in this course.")
+        else:
+            print("Error: ID not found.")
+
+    
+    def delete_student(self):
+        print("\n--- [D] Delete  STUDENT ---")
+        s_id = input("Enter Student ID: ")
+        if s_id in self.students:
+            del self.students[s_id]
+            print("Success: Student deleted.")
+        else:
+            print("Error: ID not found.")
+
+
 def main():
     system = MultiCourseSystem()
     
@@ -63,7 +109,9 @@ def main():
         print("1. New Student")
         print("2. View All Courses")
         print("3. View Enrolled Students")
-        print("4. Exit")
+        print("4. Edit Courses")
+        print("5. Remove Student")
+        print("6. Exit")
         
         choice = input("Select Option (1-6): ")
 
@@ -74,6 +122,10 @@ def main():
         elif choice == '3':
             system.view_students()
         elif choice == '4':
+            system.update_enrollment()
+        elif choice == '5':
+            system.delete_student()
+        elif choice == '6':
             print("Exiting...")
             break
         else:
