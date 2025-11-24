@@ -59,46 +59,10 @@ class MultiCourseSystem:
                 print(f"{s_id:<10} {data['name']:<15} {course_str}")
 
    
-    def update_enrollment(self):
-        print("\n--- [U] Edit COURSES ---")
-        s_id = input("Enter Student ID: ")
-        
-        if s_id in self.students:
-            student = self.students[s_id]
-            print(f"Student: {student['name']} | Courses: {student['courses']}")
+
             
-            action = input("Do you want to (1) Add Course or (2) Drop Course? ")
-            
-            if action == '1':
-                new_course = input("Enter exact course name to add: ")
-                if new_course in self.catalog:
-                    if new_course not in student['courses']:
-                        student['courses'].append(new_course)
-                        print("Success: Course added.")
-                    else:
-                        print("Error: Already enrolled.")
-                else:
-                    print("Error: Course not in catalog.")
-            
-            elif action == '2':
-                drop_course = input("Enter exact course name to drop: ")
-                if drop_course in student['courses']:
-                    student['courses'].remove(drop_course)
-                    print("Success: Course dropped.")
-                else:
-                    print("Error: Not enrolled in this course.")
-        else:
-            print("Error: ID not found.")
 
     
-    def delete_student(self):
-        print("\n--- [D] Delete  STUDENT ---")
-        s_id = input("Enter Student ID: ")
-        if s_id in self.students:
-            del self.students[s_id]
-            print("Success: Student deleted.")
-        else:
-            print("Error: ID not found.")
 
 
 def main():
@@ -109,9 +73,7 @@ def main():
         print("1. New Student")
         print("2. View All Courses")
         print("3. View Enrolled Students")
-        print("4. Edit Courses")
-        print("5. Remove Student")
-        print("6. Exit")
+        print("4. Exit")
         
         choice = input("Select Option (1-6): ")
 
@@ -122,10 +84,6 @@ def main():
         elif choice == '3':
             system.view_students()
         elif choice == '4':
-            system.update_enrollment()
-        elif choice == '5':
-            system.delete_student()
-        elif choice == '6':
             print("Exiting...")
             break
         else:
