@@ -1,12 +1,12 @@
 class MultiCourseSystem:
-    def __init__(self):
+    def init(self):
         self.students = {}
         
        
         self.catalog = ["Data Science", "Robotics ", "Web Development", "Cyber Security"]
 
    
-    def view_courses(self):
+    def view__courses(self):
         print("\n--- [R] COURSE Management")
         print(f"{'Course Name':<25} {'Enrolled Students'}")
         print("-" * 45)
@@ -14,14 +14,14 @@ class MultiCourseSystem:
         for course in self.catalog:
            
             count = 0
-            for student_data in self.students.values():
+            for student.data in self.students.values():
                 if course in student_data['courses']:
                     count += 1
             
             print(f"{course:<25} {count}")
 
     
-    def register_student(self):
+    def register__student(self):
         print("\n--- [C] New Student---")
         s_id = input("Enter Student ID: ")
         
@@ -39,7 +39,7 @@ class MultiCourseSystem:
 
         enrolled_courses = []
         if selection in self.catalog:
-            enrolled_courses.append(selection)
+            enrolled__courses.append(selection)
             print(f"Added {selection}.")
         
 
@@ -47,24 +47,16 @@ class MultiCourseSystem:
         print(f"Success: Student {name} registered.")
 
     
-    def view_students(self):
+    def view__students(self):
         print("\n--- [R] List Of students ---")
         if not self.students:
-            print("No students found.")
+            print("No student")
         else:
             print(f"{'ID':<10} {'Name':<15} {'Enrolled Courses'}")
             print("-" * 60)
             for s_id, data in self.students.items():
                 course_str = ", ".join(data['courses']) if data['courses'] else "None"
                 print(f"{s_id:<10} {data['name']:<15} {course_str}")
-
-   
-
-            
-
-    
-
-
 def main():
     system = MultiCourseSystem()
     
