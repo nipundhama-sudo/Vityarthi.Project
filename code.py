@@ -3,7 +3,7 @@ class MultiCourseSystem:
         self.students = {}
         
        
-        self.catalog = ["Data Science", "Robotics ", "Web Development", "Cyber Security"]
+        self.catalog = ["Data Science", "Electrical Engineering", "Health Informatics", "AI and ML"]
 
    
     def view__courses(self):
@@ -54,9 +54,7 @@ class MultiCourseSystem:
         else:
             print(f"{'ID':<10} {'Name':<15} {'Enrolled Courses'}")
             print("-" * 60)
-            for s_id, data in self.students.items():
-                course_str = ", ".join(data['courses']) if data['courses'] else "None"
-                print(f"{s_id:<10} {data['name']:<15} {course_str}")
+            
 def main():
     system = MultiCourseSystem()
     
